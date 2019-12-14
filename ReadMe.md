@@ -17,3 +17,21 @@ Write Terraform script(s) that will provision the necessary resources for a Conc
 ### Stage 3
 
 Write Terraform script(s) that will provision the necessary resources for a walking skeleton.
+
+## Basics
+
+```
+terraform init
+```
+
+```
+terraform plan
+```
+
+```
+terraform apply
+```
+
+```
+terraform destroy
+```
