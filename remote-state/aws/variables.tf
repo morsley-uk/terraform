@@ -1,10 +1,15 @@
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
+variable "access_key" {}
 
-variable "aws_terraform_bucket" {
+variable "secret_key" {}
+
+variable "region" {
+  default = "eu-west-2" # London
+}
+
+variable "terraform_bucket" {
   default = "morsley-uk-terraform"
 }
 
-variable "aws_terraform_table" {
+variable "terraform_table" {
   default = "morsley-uk-terraform"
 }

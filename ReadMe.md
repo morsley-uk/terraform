@@ -122,12 +122,23 @@ terraform output
 terraform destroy
 ```
 
+For a graphical representation of your Terraform infrastructure:
+
+```
+terraform graph | dot -Tsvg > graph.svg
+```
+
+This requires GraphViz to be installed and in your PATH:
+
+http://www.graphviz.org/
+
+For more details: https://www.terraform.io/docs/commands/graph.html
+
 ## Environment Variables
 
 AWS
 
 You can provide your AWS credentials via the following environment variable:
 
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
-
+AWS_ACCESS_KEY_ID  
+AWS_SECRET_ACCESS_KEY  

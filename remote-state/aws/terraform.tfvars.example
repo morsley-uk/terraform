@@ -1,0 +1,15 @@
+###############################################################################
+# VALUES
+###############################################################################
+
+# THIS FILE SHOULD BE CHECKED INTO SOURCE CONTROL!
+
+# AWS
+# Email: aws@morsley.uk
+# Account Number: 845528683987
+
+# The credentials below are for the user: terraform, role: Terraform
+
+access_key = "[An AWS Access Key goes here!]"
+
+secret_key = "[An AWS Secret Key goes here!]"
