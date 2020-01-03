@@ -19,6 +19,9 @@ resource "aws_instance" "ec2_concourse" {
 
   provisioner "remote-exec" {
     inline = [
+      "sudo -s",
+      "echo CONCOURSE_EXTERNAL_URL=http://${aws_instance.ec2_concourse.public_dns}:8080 >> /etc/profile"
+      
       #"sudo apt update",
       #"sudo apt-get update",
       #"sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y",
@@ -44,12 +47,12 @@ resource "aws_instance" "ec2_concourse" {
     ]
   }
 
-  provisioner "local-exec" {
-    command = "echo $CONCOURSE_EXTERNAL_URL >> /etc/environment"
-    environment = {
-      CONCOURSE_EXTERNAL_URL="http://${aws_instance.ec2_concourse.public_dns}:8080"
-    }
-  }
+  #provisioner "local-exec" {
+  #  command = "echo $CONCOURSE_EXTERNAL_URL >> /etc/profile"
+  #  environment = {
+  #    CONCOURSE_EXTERNAL_URL="http://${aws_instance.ec2_concourse.public_dns}:8080"
+  #  }
+  #}
 
 }
 
