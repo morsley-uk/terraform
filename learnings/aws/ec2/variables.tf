@@ -10,6 +10,10 @@ variable "private_key_path" {}
 
 # 
 
+variable ec2_ami {}
+
+variable ec2_user {}
+
 variable "key_name" {}
 
 variable "region" {

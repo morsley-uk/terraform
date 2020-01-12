@@ -125,7 +125,7 @@ terraform destroy
 For a graphical representation of your Terraform infrastructure:
 
 ```
-terraform graph | dot -Tsvg > graph.svg
+terraform graph | dot -Tpng > graph.png
 ```
 
 This requires GraphViz to be installed and in your PATH:
