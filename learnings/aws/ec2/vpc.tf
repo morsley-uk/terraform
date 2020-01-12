@@ -5,7 +5,7 @@
 resource "aws_vpc" "vpc_jm" {
     
   tags = {
-    "Name" = "vpc-jm"
+    "Name" = "Concourse VPC"
   }
 
   cidr_block           = var.network_address_space
@@ -13,11 +13,11 @@ resource "aws_vpc" "vpc_jm" {
 
 }
 
-output "aws_vpc_id" {
+# output "aws_vpc_id" {
 
-  value = aws_vpc.vpc_jm.id
+#   value = aws_vpc.vpc_jm.id
 
-}
+# }
 
 ###############################################################################
 # INTERNET GATEWAY
@@ -30,7 +30,7 @@ resource "aws_internet_gateway" "igw_jm" {
   vpc_id = aws_vpc.vpc_jm.id
 
   tags = {
-    Name = "igw-jm"
+    Name = "Concourse Internet Gateway"
   }
 
 }
@@ -44,7 +44,7 @@ resource "aws_subnet" "public_subnet_01" {
   vpc_id = aws_vpc.vpc_jm.id
 
   tags = {
-    Name = "vpc-jm-public-subnet-01"
+    Name = "Concourse Public Subnet"
   }
 
   cidr_block              = var.public_subnet_01_address_space
@@ -85,7 +85,7 @@ resource "aws_route_table" "rt_jm" {
   vpc_id = aws_vpc.vpc_jm.id
 
   tags = {
-    Name = "rt-jm"
+    Name = "Concourse Route Table"
   }
 
   route {
@@ -106,7 +106,29 @@ resource "aws_route_table_association" "rta_public_subnet_01" {
 # NETWORK ACL
 ###############################################################################
 
-# ?
+resource "aws_network_acl" "allow_all" {
+
+  vpc_id = aws_vpc.vpc_jm.id
+
+  egress {
+    protocol = "-1"
+    rule_no = 100
+    action = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port = 0
+    to_port = 0
+  }
+
+  ingress {
+    protocol = "-1"
+    rule_no = 200
+    action = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port = 0
+    to_port = 0
+  }
+
+}
 
 ###############################################################################
 # DHCP OPTIONS SET
@@ -122,10 +144,14 @@ resource "aws_route_table_association" "rta_public_subnet_01" {
 
 resource "aws_security_group" "security_group_jm" {
 
-  name        = "security-group-jm"
+  name        = "Concourse Security Group"
   description = "Allowed ports"
   vpc_id      = aws_vpc.vpc_jm.id
   
+  tags = {
+    Name = "Concourse Security Group"
+  }
+
   ingress {
     from_port = 22
     to_port = 22

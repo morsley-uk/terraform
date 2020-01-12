@@ -2,19 +2,14 @@
 # EC2
 ###############################################################################
 
-# data "aws_ami" "aws_linux" {
+# data "aws_ami" "ubuntu" {
 
-#   owners      = ["amazon"]
+#   owners      = ["canonical"]
 #   most_recent = true
 
 #   filter {
 #     name   = "name"
-#     values = ["amzn-ami-hvm*"]
-#   }
-
-#   filter {
-#     name   = "root-device-type"
-#     values = ["ebs"]
+#     values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
 #   }
 
 #   filter {
@@ -22,6 +17,10 @@
 #     values = ["hvm"]
 #   }
 
+# }
+
+# output "aws_ubuntu_ami" {
+#   value = data.aws_ami.ubuntu.id
 # }
 
 resource "aws_instance" "ec2_jm" {
@@ -32,6 +31,10 @@ resource "aws_instance" "ec2_jm" {
   subnet_id              = aws_subnet.public_subnet_01.id
   vpc_security_group_ids = [aws_security_group.security_group_jm.id]
   key_name               = var.key_name
+
+  tags = {
+    name = "Concourse on Ubuntu"
+  }
 
   connection {
     type        = "ssh"
