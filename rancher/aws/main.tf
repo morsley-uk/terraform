@@ -6,18 +6,18 @@ provider "aws" {
 }
 
 variable "aws_access_key" {
-  default     = "xxx"
-  description = "Amazon AWS Access Key"
+  default     = "Supply a valid AWS Access Key value in your terraform.tfvars file!"
+  description = "AWS Access Key"
 }
 
 variable "aws_secret_key" {
-  default     = "xxx"
-  description = "Amazon AWS Secret Key"
+  default     = "Supply a valid AWS Secret Key value in your terraform.tfvars file!"
+  description = "AWS Secret Key"
 }
 
 variable "prefix" {
-  default     = "yourname"
-  description = "Cluster Prefix - All resources created by Terraform have this prefix prepended to them"
+  default     = ""
+  description = "Cluster Prefix - All resources created by Terraform have this prefix prepended to them."
 }
 
 variable "rancher_version" {
@@ -46,17 +46,17 @@ variable "count_agent_worker_nodes" {
 }
 
 variable "admin_password" {
-  default     = "admin"
+  default     = "Supply an Administrator password value in your terraform.tfvars file!"
   description = "Password to set for the admin account in Rancher"
 }
 
 variable "cluster_name" {
-  default     = "quickstart"
+  default     = "simple"
   description = "Kubernetes Cluster Name"
 }
 
 variable "region" {
-  default     = "us-west-2"
+  default     = "us-east-2" # Ohio
   description = "Amazon AWS Region for deployment"
 }
 
